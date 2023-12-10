@@ -39,6 +39,7 @@ let renderer: Renderer<Element | ShadowRoot> | HydrationRenderer
 let enabledHydration = false
 
 function ensureRenderer() {
+  // 确保有renderer对象，如果没有则执行createRenderer函数返回renderer对象。
   return (
     renderer ||
     (renderer = createRenderer<Node, Element | ShadowRoot>(rendererOptions))
@@ -63,6 +64,7 @@ export const hydrate = ((...args) => {
 }) as RootHydrateFunction
 
 export const createApp = ((...args) => {
+  // 创建应用实例，ensureRenderer用来创建并返回render对象以及createApp函数等。
   const app = ensureRenderer().createApp(...args)
 
   if (__DEV__) {

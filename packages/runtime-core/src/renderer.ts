@@ -294,6 +294,7 @@ export const queuePostRenderEffect = __FEATURE_SUSPENSE__
  * })
  * ```
  */
+// 接受options参数，返回baseCreateRenderer函数结果
 export function createRenderer<
   HostNode = RendererNode,
   HostElement = RendererElement
@@ -328,10 +329,12 @@ function baseCreateRenderer(
   createHydrationFns?: typeof createHydrationFunctions
 ): any {
   // compile-time feature flags check
+  //  如果是esm打包格式且不是测试环境则
   if (__ESM_BUNDLER__ && !__TEST__) {
     initFeatureFlags()
   }
 
+  //适应不同环境（浏览器、Node.js 等）中获取全局对象
   const target = getGlobalThis()
   target.__VUE__ = true
   if (__DEV__ || __FEATURE_PROD_DEVTOOLS__) {
