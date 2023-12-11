@@ -165,6 +165,7 @@ export const toNumber = (val: any): any => {
   return isNaN(n) ? val : n
 }
 
+// 获取全局this，globalThis、self、window、global是为了在不同环境（浏览器、Node.js 等）中获取全局对象。
 let _globalThis: any
 export const getGlobalThis = (): any => {
   return (

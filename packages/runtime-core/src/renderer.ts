@@ -294,6 +294,7 @@ export const queuePostRenderEffect = __FEATURE_SUSPENSE__
  * })
  * ```
  */
+
 // 接受options参数，返回baseCreateRenderer函数结果
 export function createRenderer<
   HostNode = RendererNode,
@@ -337,6 +338,7 @@ function baseCreateRenderer(
   //适应不同环境（浏览器、Node.js 等）中获取全局对象
   const target = getGlobalThis()
   target.__VUE__ = true
+  // 检测是否开发环境且是否启用 vue devtools支持
   if (__DEV__ || __FEATURE_PROD_DEVTOOLS__) {
     setDevtoolsHook(target.__VUE_DEVTOOLS_GLOBAL_HOOK__, target)
   }

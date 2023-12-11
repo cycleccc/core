@@ -49,6 +49,7 @@ function emit(event: string, ...args: any[]) {
   }
 }
 
+// vue应用程序运行时启动devtoolsHook，运行buffer中的事件
 export function setDevtoolsHook(hook: DevtoolsHook, target: any) {
   devtools = hook
   if (devtools) {
@@ -65,6 +66,7 @@ export function setDevtoolsHook(hook: DevtoolsHook, target: any) {
     // also exclude jsdom
     !window.navigator?.userAgent?.includes('jsdom')
   ) {
+    // replay确保能捕获并显示应用程序的当前状态
     const replay = (target.__VUE_DEVTOOLS_HOOK_REPLAY__ =
       target.__VUE_DEVTOOLS_HOOK_REPLAY__ || [])
     replay.push((newHook: DevtoolsHook) => {
