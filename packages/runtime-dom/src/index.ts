@@ -67,6 +67,7 @@ export const createApp = ((...args) => {
   // 创建应用实例，ensureRenderer用来创建并返回render对象以及createApp函数等。
   const app = ensureRenderer().createApp(...args)
 
+  //开发环境引入辅助工具检测潜在问题
   if (__DEV__) {
     injectNativeTagCheck(app)
     injectCompilerOptionsCheck(app)
